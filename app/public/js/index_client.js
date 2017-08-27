@@ -73,8 +73,8 @@ function createBurgerItem(data,i){
                         )  
                 }
 
-                optionEdit.append("<form action='/show/"+data.id+"' method='GET'>"
-                        +"<input type='image' class='tooltipped' data-position='right' data-delay='50' data-tooltip='More Info' src='/img/search.png'/>"
+                optionEdit.append("<form>"
+                        +"<input type='image' class='burger-show tooltipped' data-id='"+data.id+"' data-position='right' data-delay='50' data-tooltip='More Info' src='/img/search.png'/>"
                         +"</form>"
                 )
                 
@@ -101,7 +101,6 @@ function updateBurgerCarousel(){
         $('.material-tooltip').remove();
 
         $.get('./api/all', (res) =>{
-                console.log(res)
                         for(i =0; i < res.length; i++){
                                 createBurgerItem(res[i],i);
                         }
@@ -177,24 +176,25 @@ $(document).ready(() => {
 
 /* EAT BURGER */
 // -------------------------------------------------------
-$('#burger-display').on('click', '.burger-devoured', function(ev){
-        ev.preventDefault();
-        var id = $(this).attr('data-id');
-        var burger = {
-                devoured: $(this).attr('data-devoured')
-        };
+        $('#burger-display').on('click', '.burger-devoured', function(ev){
+                ev.preventDefault();
+                var id = $(this).attr('data-id');
+                var burger = {
+                        devoured: $(this).attr('data-devoured')
+                };
 
-        $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                data: burger,
-                url: '/api/'+id+'?_method=PUT',
-                success: (res) => {
-                        Materialize.toast('Successfully eaten burger', 2000,'',function(){})
-                        updateBurgerCarousel();
-                }
+                $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        data: burger,
+                        url: '/api/'+id+'?_method=PUT',
+                        success: (res) => {
+                                Materialize.toast('Successfully eaten burger', 2000,'',function(){})
+                                updateBurgerCarousel();
+                        }
+                })
         })
-})
+
 /* EDIT BURGER */
 // -------------------------------------------------------
 
@@ -202,11 +202,8 @@ $('#burger-display').on('click', '.burger-devoured', function(ev){
                 ev.preventDefault();
 
                 var id = $(this).attr('data-id');
-
-                $.ajax({
-                        type: 'GET',
-                        url: "/show/"+ id
-                })
+                console.log(id)
+                location.replace("/show/"+id)
         })
 
 /* DELETE BURGER */
