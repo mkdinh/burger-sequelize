@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Make-A-Burger</title>
+        {{!-- <!--Import Google Icon Font--> --}}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Indie+Flower|Shadows+Into+Light" rel="stylesheet">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+        {{!-- import personal style css --}}
+        <link rel='stylesheet' href='/css/burger_style.css'>
+        {{!-- <!--Let browser know website is optimized for mobile--> --}}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </head>
+    <body>
+
+        {{!-- navbar --}}
+
+        <nav>
+            <div class="nav-wrapper">
+            <a href="/" class="brand-logo center"><img id='logo' src='/img/hamburger.png' alt='hamburger'></a>
+            <ul class="left hide-on-med-and-down">
+            </ul>
+            </div>
+        </nav>
+
+        <main>
+            <div class='container'>
+                {{{ body }}}
+            </div>
+        </main>
+
+        <footer class='footer-ref'>
+            <span><a href='/api/all'>API</a></span> 
+            <span>|</span>
+            <span><a href='https://github.com/mkdinh/burger'>Github</a></span>
+            <span>|</span>
+            <span><a href='https://mkdinh.github.io/Responsive-Portfolio/'>Michael Dinh</a></span>
+        </footer>
+    </body>
+</html>
